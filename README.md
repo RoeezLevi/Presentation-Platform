@@ -20,6 +20,8 @@ This project is a server-side service for managing presentations on a web platfo
    npm install
  ```
 4.Set up environment variables:
+
+
 Create a .env file in the root directory and add the following:
  ```
    MONGODB_URI=your_mongodb_uri
