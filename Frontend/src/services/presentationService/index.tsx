@@ -2,7 +2,7 @@ import axios from "axios";
 import { Presentation, Slide } from "../../types";
 
 const api = axios.create({
-  baseURL: "http://localhost:5001", 
+  baseURL: "http://localhost:5001/api",
 });
 
 export const fetchPresentations = async () => {

@@ -10,6 +10,7 @@ This project is a server-side service for managing presentations on a web platfo
    ```
    git clone https://github.com/yourusername/presentation-platform.git
    ```
+   
 
 2.Navigate to the project directory:
  ```
@@ -33,5 +34,7 @@ Start the server:
  ```
    npm start
  ```
+
+
 
 

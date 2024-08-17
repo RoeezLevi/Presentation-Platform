@@ -2,9 +2,15 @@ import express from "express";
 import mongoose from "mongoose";
 import presentationRoutes from "./routes/presentationRoutes.js";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow only this origin
+  })
+);
 const port = process.env.PORT || 3000;
 
 // Middleware
