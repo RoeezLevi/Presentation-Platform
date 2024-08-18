@@ -22,9 +22,12 @@ const Dashboard: React.FC = () => {
   }, [loadPresentations]);
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container table-container">
       <h1>Presentations Dashboard</h1>
-      <Button onClick={openCreatePresentationModal}>
+      <Button
+        style={{ marginBottom: "1em" }}
+        onClick={openCreatePresentationModal}
+      >
         Create New Presentation
       </Button>
 

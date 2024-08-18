@@ -39,8 +39,6 @@ const PresentationPreview: React.FC = () => {
     <div>
       <h1>{currentPresentation.title}</h1>
 
-      <Button onClick={openCreateSlideModal}>Create Slide</Button>
-
       {slides.length > 0 ? (
         <Carousel style={{ overflow: "hidden", width: "100%" }}>
           <CarouselContent
@@ -50,7 +48,10 @@ const PresentationPreview: React.FC = () => {
               <CarouselItem key={index} style={{ flex: "0 0 100%" }}>
                 <h3>{slide.title}</h3>
                 <p>{slide.content}</p>
-                <Button onClick={() => openEditSlideModal(index)}>
+                <Button
+                  style={{ marginRight: "1em" }}
+                  onClick={() => openEditSlideModal(index)}
+                >
                   Edit Slide
                 </Button>
                 <Button
@@ -67,14 +68,18 @@ const PresentationPreview: React.FC = () => {
             ))}
           </CarouselContent>
           <br />
-          <CarouselPrevious />
+          <CarouselPrevious style={{ marginRight: "1em" }} />
           <CarouselNext />
         </Carousel>
       ) : (
         <p>No slides available.</p>
       )}
       <br />
-      <Button onClick={() => navigate("/")}>Back to Dashboard</Button>
+      <Button style={{ marginRight: "1em" }} onClick={() => navigate("/")}>
+        Back to Dashboard
+      </Button>
+
+      <Button onClick={openCreateSlideModal}>Create Slide</Button>
 
       {modalOpen && (
         <>

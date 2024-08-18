@@ -108,22 +108,27 @@
   margin: 20px 0; /* Add some space around the table */
 }
 
-.dropdown-menu {
-  background-color: white;
-  z-index: 1000;
-  border: 1px solid #ccc;
-  padding: 10px;
-  position: absolute; /* Ensure it's positioned correctly */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 8px 16px;
-  color: black;
-  text-decoration: none;
-}
-
-.dropdown-menu a:hover {
+/* .dropdown-menu a:hover {
+  background-color: black;
   background-color: #f1f1f1;
+} */
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures that the borders do not have space between them */
+}
+
+.table-container th,
+.table-container td {
+  border: 1px solid #ddd; /* Set the border color */
+  padding: 8px; /* Add padding inside the cells */
+}
+
+.table-container th {
+  background-color: #f2f2f2; /* Optional: Set background for header cells */
+  text-align: left; /* Align text to the left */
+}
+
+.table-container tr:hover {
+  background-color: #f1f1f1; /* Optional: Add hover effect */
 }

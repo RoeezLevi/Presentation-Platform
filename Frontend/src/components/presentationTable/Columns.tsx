@@ -50,7 +50,12 @@ export const Columns: ColumnDef<Presentation>[] = [
       };
 
       return (
-        <div className="border-r border-black px-2">
+        <div
+          className="display: block;
+  padding: 8px 16px;
+  color: black;
+  text-decoration: none;"
+        >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
