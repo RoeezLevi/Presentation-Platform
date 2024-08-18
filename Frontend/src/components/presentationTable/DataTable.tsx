@@ -17,7 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Presentation } from "../../types";
-import "./styles.css";
+
 
 interface DataTableProps {
   columns: ColumnDef<Presentation>[];

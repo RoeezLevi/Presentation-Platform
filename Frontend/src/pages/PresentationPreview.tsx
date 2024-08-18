@@ -3,17 +3,17 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Button } from "../ui/button";
+import { Button } from "../components/ui/button";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
-} from "../ui/carousel";
-import FormModal from "./FormModal";
-import { deleteSlideFromPresentation } from "../../services/presentationService";
-import { usePresentationHandlers } from "./presentationHandlers";
+} from "../components/ui/carousel";
+import FormModal from "../components/FormModal/FormModal";
+import { deleteSlideFromPresentation } from "../services/presentationService";
+import { usePresentationHandlers } from "../services/presentationService/presentationHandlers";
 
 const PresentationPreview: React.FC = () => {
   const { title } = useParams<{ title: string }>();
@@ -45,7 +45,11 @@ const PresentationPreview: React.FC = () => {
             style={{ display: "flex", transition: "transform 0.5s ease" }}
           >
             {slides.map((slide, index) => (
-              <CarouselItem key={index} style={{ flex: "0 0 100%" }}>
+              <CarouselItem
+                className="slide-container"
+                key={index}
+                style={{ flex: "0 0 100%" }}
+              >
                 <h3>{slide.title}</h3>
                 <p>{slide.content}</p>
                 <Button

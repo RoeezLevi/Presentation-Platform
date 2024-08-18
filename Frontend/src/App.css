@@ -108,10 +108,13 @@
   margin: 20px 0; /* Add some space around the table */
 }
 
-/* .dropdown-menu a:hover {
-  background-color: black;
-  background-color: #f1f1f1;
-} */
+.slide-container {
+  border: solid #333; /* Adds a 2px solid border */
+  border-radius: 8px; /* Optional: Adds rounded corners */
+  padding: 16px; /* Optional: Adds padding inside the border */
+  margin-bottom: 16px; /* Optional: Adds space between slides */
+  background-color: #f9f9f9; /* Optional: Adds background color */
+}
 
 .table-container table {
   width: 100%;

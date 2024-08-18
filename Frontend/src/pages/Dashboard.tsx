@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import usePresentationStore from "../store/presentationStore";
 import { DataTable } from "../components/presentationTable/DataTable";
 import { Columns } from "../components/presentationTable/Columns";
-import { usePresentationHandlers } from "../components/presentationTable/presentationHandlers";
+import { usePresentationHandlers } from "../services/presentationService/presentationHandlers";
 import { Button } from "../components/ui/button";
-import FormModal from "../components/presentationTable/FormModal";
+import FormModal from "../components/FormModal/FormModal";
 
 const Dashboard: React.FC = () => {
   const { presentations, loadPresentations } = usePresentationStore();
