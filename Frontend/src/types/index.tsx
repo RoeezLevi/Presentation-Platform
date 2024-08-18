@@ -6,6 +6,6 @@ export interface Slide {
 export interface Presentation {
   title: string;
   authors: string[];
-  dateOfPublishment: Date;
+  dateOfPublishment: string;
   slides: Slide[];
 }

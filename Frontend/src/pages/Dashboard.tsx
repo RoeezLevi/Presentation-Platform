@@ -4,10 +4,10 @@ import { DataTable } from "../components/presentationTable/DataTable";
 import { Columns } from "../components/presentationTable/Columns";
 
 const Dashboard: React.FC = () => {
-  const { presentations, loadPresentations } = usePresentationStore(); // Fetch from Zustand store
+  const { presentations, loadPresentations } = usePresentationStore(); 
 
   useEffect(() => {
-    loadPresentations(); // Call the function from Zustand store
+    loadPresentations(); 
   }, [loadPresentations]);
 
   console.log("Presentations:", presentations);
@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
   return (
     <div>
       <h1>Presentations Dashboard</h1>
-      <DataTable columns={Columns} data={presentations} />
+      <DataTable columns={Columns} data={presentations}  />
     </div>
   );
 };
