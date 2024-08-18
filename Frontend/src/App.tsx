@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/presentations/:title" element={<PresentationPreview />} />
+
         {/* <Route path="/create" element={<CreatePresentation />} />
         <Route path="**" element={<pageNotFound/>} /> */}
       </Routes>

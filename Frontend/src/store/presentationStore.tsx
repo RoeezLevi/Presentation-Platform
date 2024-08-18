@@ -1,4 +1,3 @@
-// src/store/presentationStore.ts
 import create from "zustand";
 import {
   fetchPresentations,
@@ -11,8 +10,6 @@ import {
 } from "../services/presentationService";
 
 import type { Presentation, Slide } from "../types";
-
-
 
 interface State {
   presentations: Presentation[];
@@ -33,51 +30,61 @@ interface State {
 const usePresentationStore = create<State>((set) => ({
   presentations: [],
   currentPresentation: null,
-
   loadPresentations: async () => {
-    const presentations = await fetchPresentations();
-    set({ presentations });
+    try {
+      const presentations = await fetchPresentations();
+      set({ presentations });
+    } catch (error) {
+      console.error("Failed to load presentations:", error);
+    }
   },
-
   loadPresentationByTitle: async (title: string) => {
-    const presentation = await fetchPresentationByTitle(title);
-    set({ currentPresentation: presentation });
+    try {
+      const presentation = await fetchPresentationByTitle(title);
+      set({ currentPresentation: presentation });
+    } catch (error) {
+      console.error("Failed to load presentation by title:", error);
+    }
   },
-
   createPresentation: async (presentation: Presentation) => {
-    const newPresentation = await apiCreatePresentation(presentation);
-    set((state) => ({
-      presentations: [...state.presentations, newPresentation],
-    }));
+    try {
+      await apiCreatePresentation(presentation);
+      await usePresentationStore.getState().loadPresentations();
+    } catch (error) {
+      console.error("Failed to create presentation:", error);
+    }
   },
-
   deletePresentation: async (title: string) => {
-    await apiDeletePresentation(title);
-    set((state) => ({
-      presentations: state.presentations.filter((p) => p.title !== title),
-    }));
+    try {
+      await apiDeletePresentation(title);
+      await usePresentationStore.getState().loadPresentations();
+    } catch (error) {
+      console.error("Failed to delete presentation:", error);
+    }
   },
-
   addSlide: async (title: string, slide: Slide) => {
-    const updatedPresentation = await addSlideToPresentation(title, slide);
-    set({ currentPresentation: updatedPresentation });
+    try {
+      await addSlideToPresentation(title, slide);
+      await usePresentationStore.getState().loadPresentationByTitle(title);
+    } catch (error) {
+      console.error("Failed to add slide:", error);
+    }
   },
-
   updateSlide: async (title: string, slideTitle: string, slide: Slide) => {
-    const updatedPresentation = await updateSlideInPresentation(
-      title,
-      slideTitle,
-      slide
-    );
-    set({ currentPresentation: updatedPresentation });
+    try {
+      await updateSlideInPresentation(title,slideTitle, slide);
+      await usePresentationStore.getState().loadPresentationByTitle(title);
+    } catch (error) {
+      console.error("Failed to update slide:", error);
+    }
   },
-
   removeSlide: async (title: string, slideTitle: string) => {
-    const updatedPresentation = await deleteSlideFromPresentation(
-      title,
-      slideTitle
-    );
-    set({ currentPresentation: updatedPresentation });
+    try {
+      await deleteSlideFromPresentation(title, slideTitle);
+      await usePresentationStore.getState().loadPresentationByTitle(title);
+    } catch (error) {
+      console.error("Failed to remove slide:", error);
+    }
   },
 }));
 
