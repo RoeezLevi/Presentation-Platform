@@ -1,9 +1,23 @@
 # Presentation Platform Server-Side Service
 
 ## Description
-This project is a server-side service for managing presentations on a web platform. It is built using Node.js and Express, following RESTful API conventions. MongoDB is used for data storage.
+This project is a web-based platform for managing and displaying presentations. It is built using Node.js with Express on the backend and MongoDB for database management. The platform offers features like creating, editing, and viewing presentations.
 
+## Features
+1.Create and manage presentations
 
+2.RESTful API services
+
+3.Responsive and user-friendly UI
+
+## Tech Stack
+1.Backend: Node.js, Express
+
+2.Database: MongoDB
+
+3.Frontend: React
+
+4.Version Control: Git and GitHub
 
 ## Installation
 1. Clone the repository:
@@ -16,12 +30,17 @@ This project is a server-side service for managing presentations on a web platfo
  ```
    cd presentation-platform
  ```
-3.Install dependencies:
+3.Install dependencies for the backend:
  ```
+   cd backend
    npm install
  ```
-4.Set up environment variables:
-
+4.Install dependencies for the backend:
+ ```
+   cd ../frontend
+   npm install
+ ```
+5.Set up environment variables:
 
 Create a .env file in the root directory and add the following:
  ```
@@ -30,9 +49,15 @@ Create a .env file in the root directory and add the following:
  ```
 ## Run the server
 
-Start the server:
+1.Start the backend server:
  ```
-   npm start
+   cd backend
+   npm run server
+ ```
+2.Start the frontend server:
+ ```
+   cd ../frontend
+   npm run dev
  ```
 
 
