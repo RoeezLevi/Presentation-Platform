@@ -1,4 +1,3 @@
-// src/components/presentation/presentationHandlers.tsx
 import usePresentationStore from "../../store/presentationStore";
 import { useNavigate } from "react-router-dom";
 import { useState, useCallback, useEffect } from "react";
@@ -10,15 +9,18 @@ export const usePresentationHandlers = (title: string | undefined) => {
     loadPresentationByTitle,
     addSlide,
     updateSlide,
-    createPresentation, // Add createPresentation from the store
+    createPresentation,
   } = usePresentationStore();
+
   const navigate = useNavigate();
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<
-    "create-slide" | "edit-slide" | "create-presentation"
-  >("create-slide");
+    "create-slide" | "edit-slide" | "create-presentation" | null
+  >(null);
+
   const [editSlideIndex, setEditSlideIndex] = useState<number | null>(null);
+
   const [initialData, setInitialData] = useState<{
     title?: string;
     content?: string;
@@ -28,6 +30,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     slides?: Slide[];
   }>({});
 
+  // Load the presentation by title (if provided)
   const loadPresentation = useCallback(() => {
     if (title) {
       loadPresentationByTitle(title);
@@ -38,6 +41,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     loadPresentation();
   }, [loadPresentation]);
 
+  // Handle creating a new slide
   const handleCreateSlide = async (data: {
     title: string;
     content: string;
@@ -48,6 +52,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     }
   };
 
+  // Handle editing an existing slide
   const handleEditSlide = async (data: { title: string; content: string }) => {
     if (currentPresentation && editSlideIndex !== null) {
       await updateSlide(
@@ -59,6 +64,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     }
   };
 
+  // Handle creating a new presentation
   const handleCreatePresentation = async (data: {
     title: string;
     description: string;
@@ -68,14 +74,17 @@ export const usePresentationHandlers = (title: string | undefined) => {
   }) => {
     await createPresentation(data);
     setModalOpen(false);
+    // Optionally navigate to the new presentation's page
   };
 
+  // Open the modal for creating a new slide
   const openCreateSlideModal = () => {
     setInitialData({});
     setModalMode("create-slide");
     setModalOpen(true);
   };
 
+  // Open the modal for editing an existing slide
   const openEditSlideModal = (index: number) => {
     const slide = currentPresentation?.slides[index];
     if (slide) {
@@ -86,6 +95,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     }
   };
 
+  // Open the modal for creating a new presentation
   const openCreatePresentationModal = () => {
     setInitialData({
       title: "",

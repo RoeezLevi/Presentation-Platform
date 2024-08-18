@@ -8,7 +8,6 @@ import FormModal from "../components/FormModal/FormModal";
 
 const Dashboard: React.FC = () => {
   const { presentations, loadPresentations } = usePresentationStore();
-
   const {
     modalOpen,
     modalMode,
@@ -30,13 +29,11 @@ const Dashboard: React.FC = () => {
       >
         Create New Presentation
       </Button>
-
       <DataTable columns={Columns} data={presentations} />
-
       {modalOpen && (
         <>
-          <div className="modal-backdrop"></div>
-          <div className="modal">
+          <div className="modal-backdrop fixed inset-0 bg-black opacity-50 z-40"></div>
+          <div className="modal fixed inset-0 z-50 flex items-center justify-center">
             <FormModal
               mode={modalMode}
               onClose={() => setModalOpen(false)}
