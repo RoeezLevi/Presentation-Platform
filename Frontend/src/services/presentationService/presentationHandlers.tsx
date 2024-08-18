@@ -10,6 +10,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     addSlide,
     updateSlide,
     createPresentation,
+    loadPresentations,
   } = usePresentationStore();
 
   const navigate = useNavigate();
@@ -74,7 +75,6 @@ export const usePresentationHandlers = (title: string | undefined) => {
   }) => {
     await createPresentation(data);
     setModalOpen(false);
-    // Optionally navigate to the new presentation's page
   };
 
   // Open the modal for creating a new slide
@@ -115,6 +115,7 @@ export const usePresentationHandlers = (title: string | undefined) => {
     initialData,
     setModalOpen,
     handleCreateSlide,
+    loadPresentations,
     handleEditSlide,
     handleCreatePresentation,
     openCreateSlideModal,

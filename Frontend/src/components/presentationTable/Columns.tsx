@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { deletePresentation } from "@/services/presentationService";
 import { useNavigate } from "react-router-dom";
 
+import usePresentationStore from "@/store/presentationStore";
+
 export const Columns: ColumnDef<Presentation>[] = [
   {
     accessorKey: "title",
@@ -38,11 +40,14 @@ export const Columns: ColumnDef<Presentation>[] = [
     cell: ({ row }) => {
       const presentation = row.original;
       const navigate = useNavigate();
+      const { loadPresentations } = usePresentationStore();
       const handleViewClick = () => {
         navigate(`/presentations/${presentation.title}`);
       };
-      const handleDeleteClick = () => {
-        deletePresentation(presentation.title);
+      const handleDeleteClick = async () => {
+        await deletePresentation(presentation.title);
+        loadPresentations(); // Reload presentations after deletion
+        navigate("/");
       };
 
       return (

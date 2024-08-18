@@ -30,7 +30,10 @@ const Dashboard: React.FC = () => {
       >
         Create New Presentation
       </Button>
-      <DataTable columns={Columns} data={presentations} />
+      <DataTable
+        columns={Columns} 
+        data={presentations}
+      />
       {modalOpen && (
         <>
           <div className="modal-backdrop fixed inset-0 bg-black opacity-50 z-40"></div>
