@@ -12,20 +12,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { deletePresentation } from "@/services/presentationService";
+import { useNavigate } from "react-router-dom";
 
 export const Columns: ColumnDef<Presentation>[] = [
   {
     accessorKey: "title",
     header: "Title",
     cell: ({ row }) => (
-      <div className="border-r px-2">{row.original.title}</div>
+      <div className="border-r border-gray-400 px-2">{row.original.title}</div>
     ),
   },
   {
     accessorKey: "authors",
     header: "Authors",
     cell: ({ row }) => (
-      <div className="border-r px-2">{row.original.authors.join(", ")}</div>
+      <div className="border-r border-gray-400 px-2">
+        {row.original.authors.join(", ")}
+      </div>
     ),
   },
   {
@@ -33,7 +36,7 @@ export const Columns: ColumnDef<Presentation>[] = [
     header: "Date of Publishment",
     cell: ({ row }) => {
       const dateString = row.original.dateOfPublishment;
-      return <div className="border-r px-2">{dateString}</div>;
+      return <div className="border-r border-gray-400 px-2">{dateString}</div>;
     },
   },
   {
@@ -41,9 +44,13 @@ export const Columns: ColumnDef<Presentation>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const presentation = row.original;
+      const navigate = useNavigate();
+      const handleClick = () => {
+        navigate(`/presentations/${presentation.title}`);
+      };
 
       return (
-        <div className="border-r  px-2">
+        <div className="border-r border-black px-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -60,7 +67,9 @@ export const Columns: ColumnDef<Presentation>[] = [
                 Delete
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>View Presentation</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleClick}>
+                View Presentation
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

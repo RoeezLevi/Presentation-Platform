@@ -1,0 +1,11 @@
+.table-row {
+  border-bottom: 1px solid black;
+}
+
+.table-cell {
+  border-right: 1px solid black;
+}
+
+.table-cell:last-child {
+  border-right: none;
+}

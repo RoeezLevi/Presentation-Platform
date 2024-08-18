@@ -17,6 +17,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Presentation } from "../../types";
+import "./styles.css";
 
 interface DataTableProps {
   columns: ColumnDef<Presentation>[];
@@ -35,11 +36,11 @@ export function DataTable({ columns, data }: DataTableProps) {
 
   return (
     <div className="w-full">
-      <div className="border-r  ">
+      <div className="rounded-xl border ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow className="table-row" key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
                     {header.isPlaceholder
@@ -61,7 +62,7 @@ export function DataTable({ columns, data }: DataTableProps) {
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell className="table-cell" key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
