@@ -1,8 +1,8 @@
+// src/components/presentation/PresentationPreview.tsx
 "use client";
 
-import React, { useEffect, useState, useCallback } from "react";
-import usePresentationStore from "../../store/presentationStore";
-import { useParams, useNavigate } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   Carousel,
@@ -12,74 +12,22 @@ import {
   CarouselNext,
 } from "../ui/carousel";
 import FormModal from "./FormModal";
+import { deleteSlideFromPresentation } from "../../services/presentationService";
+import { usePresentationHandlers } from "./presentationHandlers";
 
 const PresentationPreview: React.FC = () => {
   const { title } = useParams<{ title: string }>();
   const {
     currentPresentation,
-    loadPresentationByTitle,
-    addSlide,
-    updateSlide,
-  } = usePresentationStore();
-  const navigate = useNavigate();
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState<"create-slide" | "edit-slide">(
-    "create-slide"
-  );
-  const [editSlideIndex, setEditSlideIndex] = useState<number | null>(null);
-  const [initialData, setInitialData] = useState<{
-    title?: string;
-    content?: string;
-  }>({});
-
-  // Ensure loadPresentationByTitle is memoized to prevent unnecessary re-renders
-  const loadPresentation = useCallback(() => {
-    if (title) {
-      loadPresentationByTitle(title);
-    }
-  }, [title, loadPresentationByTitle]);
-
-  useEffect(() => {
-    loadPresentation();
-  }, [loadPresentation]);
-
-  const handleCreateSlide = async (data: {
-    title: string;
-    content: string;
-  }) => {
-    if (currentPresentation) {
-      await addSlide(currentPresentation.title, data);
-      setModalOpen(false); // Close the modal after slide creation
-    }
-  };
-
-  const handleEditSlide = async (data: { title: string; content: string }) => {
-    if (currentPresentation && editSlideIndex !== null) {
-      await updateSlide(
-        currentPresentation.title,
-        currentPresentation.slides[editSlideIndex].title,
-        data
-      );
-      setModalOpen(false); // Close the modal after slide editing
-    }
-  };
-
-  const openCreateSlideModal = () => {
-    setInitialData({});
-    setModalMode("create-slide");
-    setModalOpen(true);
-  };
-
-  const openEditSlideModal = (index: number) => {
-    const slide = currentPresentation?.slides[index];
-    if (slide) {
-      setInitialData({ title: slide.title, content: slide.content });
-      setEditSlideIndex(index);
-      setModalMode("edit-slide");
-      setModalOpen(true);
-    }
-  };
+    modalOpen,
+    modalMode,
+    setModalOpen,
+    handleCreateSlide,
+    handleEditSlide,
+    openCreateSlideModal,
+    openEditSlideModal,
+    navigate,
+  } = usePresentationHandlers(title);
 
   if (!currentPresentation) {
     return <div>Loading...</div>;
@@ -105,6 +53,16 @@ const PresentationPreview: React.FC = () => {
                 <Button onClick={() => openEditSlideModal(index)}>
                   Edit Slide
                 </Button>
+                <Button
+                  onClick={() =>
+                    deleteSlideFromPresentation(
+                      currentPresentation?.title,
+                      currentPresentation?.slides[index].title
+                    )
+                  }
+                >
+                  Delete Slide
+                </Button>
               </CarouselItem>
             ))}
           </CarouselContent>
@@ -121,7 +79,6 @@ const PresentationPreview: React.FC = () => {
       {modalOpen && (
         <FormModal
           mode={modalMode}
-          initialData={initialData}
           onClose={() => setModalOpen(false)}
           onSubmit={
             modalMode === "create-slide" ? handleCreateSlide : handleEditSlide

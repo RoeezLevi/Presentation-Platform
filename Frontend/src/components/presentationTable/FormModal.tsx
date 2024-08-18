@@ -22,6 +22,7 @@ interface FormProps {
     authors?: string[];
     content?: string;
   }) => Promise<void>;
+  
 }
 
 const FormModal: React.FC<FormProps> = ({
