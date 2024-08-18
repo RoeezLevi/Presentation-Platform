@@ -77,13 +77,20 @@ const PresentationPreview: React.FC = () => {
       <Button onClick={() => navigate("/")}>Back to Dashboard</Button>
 
       {modalOpen && (
-        <FormModal
-          mode={modalMode}
-          onClose={() => setModalOpen(false)}
-          onSubmit={
-            modalMode === "create-slide" ? handleCreateSlide : handleEditSlide
-          }
-        />
+        <>
+          <div className="modal-backdrop"></div>
+          <div className="modal">
+            <FormModal
+              mode={modalMode}
+              onClose={() => setModalOpen(false)}
+              onSubmit={
+                modalMode === "create-slide"
+                  ? handleCreateSlide
+                  : handleEditSlide
+              }
+            />
+          </div>
+        </>
       )}
     </div>
   );
