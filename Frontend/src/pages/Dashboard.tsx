@@ -24,6 +24,7 @@ const Dashboard: React.FC = () => {
     <div className="dashboard-container table-container">
       <h1>Presentations Dashboard</h1>
       <Button
+        className="bn632-hover bn22"
         style={{ marginBottom: "1em" }}
         onClick={openCreatePresentationModal}
       >

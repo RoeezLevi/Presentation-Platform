@@ -79,11 +79,17 @@ const PresentationPreview: React.FC = () => {
         <p>No slides available.</p>
       )}
       <br />
-      <Button style={{ marginRight: "1em" }} onClick={() => navigate("/")}>
+      <Button
+        className="bn632-hover bn20"
+        style={{ marginRight: "1em" }}
+        onClick={() => navigate("/")}
+      >
         Back to Dashboard
       </Button>
 
-      <Button onClick={openCreateSlideModal}>Create Slide</Button>
+      <Button className="bn632-hover bn22" onClick={openCreateSlideModal}>
+        Create Slide
+      </Button>
 
       {modalOpen && (
         <>
