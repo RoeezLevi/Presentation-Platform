@@ -1,7 +1,7 @@
 import usePresentationStore from "../../store/presentationStore";
 import { useNavigate } from "react-router-dom";
 import { useState, useCallback, useEffect } from "react";
-import { Slide } from "@/types"; // Assuming Slide is defined in this path
+import { Slide } from "../../store/types"; // Assuming Slide is defined in this path
 
 export const usePresentationHandlers = (title: string | undefined) => {
   const {

@@ -1,5 +1,5 @@
 "use client";
-import { Presentation } from "../../types";
+import { Presentation } from "../../store/types";
 import * as React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";

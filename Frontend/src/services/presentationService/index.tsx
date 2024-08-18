@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Presentation, Slide } from "../../types";
+import { Presentation, Slide } from "../../store/types";
 
 const api = axios.create({
   baseURL: "http://localhost:5001/api",

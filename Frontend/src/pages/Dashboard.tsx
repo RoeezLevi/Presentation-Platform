@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import usePresentationStore from "../store/presentationStore";
-import { DataTable } from "../components/presentationTable/DataTable";
-import { Columns } from "../components/presentationTable/Columns";
+import { DataTable } from "../components/tables/DataTable";
+import { Columns } from "../components/tables/Columns";
 import { usePresentationHandlers } from "../services/presentationService/presentationHandlers";
 import { Button } from "../components/ui/button";
-import FormModal from "../components/FormModal/FormModal";
+import FormModal from "../components/modals/FormModal";
 
 const Dashboard: React.FC = () => {
   const { presentations, loadPresentations } = usePresentationStore();
@@ -30,10 +30,7 @@ const Dashboard: React.FC = () => {
       >
         Create New Presentation
       </Button>
-      <DataTable
-        columns={Columns} 
-        data={presentations}
-      />
+      <DataTable columns={Columns} data={presentations} />
       {modalOpen && (
         <>
           <div className="modal-backdrop fixed inset-0 bg-black opacity-50 z-40"></div>

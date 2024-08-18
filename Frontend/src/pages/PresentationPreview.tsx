@@ -11,7 +11,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "../components/ui/carousel";
-import FormModal from "../components/FormModal/FormModal";
+import FormModal from "../components/modals/FormModal";
 import { deleteSlideFromPresentation } from "../services/presentationService";
 import { usePresentationHandlers } from "../services/presentationService/presentationHandlers";
 

@@ -9,7 +9,7 @@ import {
   deleteSlideFromPresentation,
 } from "../services/presentationService";
 
-import type { Presentation, Slide } from "../types";
+import type { Presentation, Slide } from "./types";
 
 interface State {
   presentations: Presentation[];
@@ -72,7 +72,7 @@ const usePresentationStore = create<State>((set) => ({
   },
   updateSlide: async (title: string, slideTitle: string, slide: Slide) => {
     try {
-      await updateSlideInPresentation(title,slideTitle, slide);
+      await updateSlideInPresentation(title, slideTitle, slide);
       await usePresentationStore.getState().loadPresentationByTitle(title);
     } catch (error) {
       console.error("Failed to update slide:", error);
