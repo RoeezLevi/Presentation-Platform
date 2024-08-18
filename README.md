@@ -2,6 +2,7 @@
 
 ## Description
 This project is a web-based platform for managing and displaying presentations. It is built using Node.js with Express on the backend and MongoDB for database management. The platform offers features like creating, editing, and viewing presentations.
+To create more readable code, I implemented the Airbnb JavaScript Style Guide and followed its instructions. 
 
 ## Features
 1.Create and manage presentations
